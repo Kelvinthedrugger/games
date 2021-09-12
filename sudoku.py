@@ -203,7 +203,7 @@ class sudo4:
         board = [board[i:i+3] for i in range(0,9,3)]
         pos = [list(range(9)) for _ in range(9)]
         
-        for num in range(1,5):
+        for num in range(1,6):
             print("num %d"%num)
             col_list = [[0,1,2] for _ in range(3)]
             for i in range(3):

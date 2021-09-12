@@ -128,6 +128,7 @@ class sudo2:
         # 3,3,9 
         print(" board shape: %d, %d, %d" % (len(self.board),len(self.board[0]),len(self.board[0][0])))
 """
+method 3.x per se
     # maybe implement a random pick function would be much easier
     # e.g.
     # F: the picking function
