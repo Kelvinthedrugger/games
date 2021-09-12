@@ -190,6 +190,10 @@ class sudo3:
 
 # method 3.1
 # slightly better than method 3
+"""
+problem: random pick might result to dead end
+potential sol'n: implement a fixer that begins to act @ block 1
+"""
 class sudo4:
 
     def __init__(self):

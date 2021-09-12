@@ -193,6 +193,7 @@ class sudo3:
 """
 problem: random pick might result to dead end
 potential sol'n: implement a fixer that begins to act @ block 1
+for test: close the game when it reaches a dead end
 """
 class sudo4:
 
