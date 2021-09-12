@@ -3,7 +3,7 @@ These approachable games are written when i don't feel like digging into semicon
 We don't use other libraries here besides build-in
 
 
-#game list
+# game list
 
  2048: 90%
 
