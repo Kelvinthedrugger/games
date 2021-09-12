@@ -128,6 +128,7 @@ class sudo2:
         # 3,3,9 
         print(" board shape: %d, %d, %d" % (len(self.board),len(self.board[0]),len(self.board[0][0])))
 """
+method 3.x per se
     # maybe implement a random pick function would be much easier
     # e.g.
     # F: the picking function
@@ -214,14 +215,12 @@ class sudo4:
                         print("row check")
                         while(not(idx//3 in row_list)):
                             idx = sudo4.func(self,pos[3*i+j])
-                    
                     if i > 0:
                         print("col check")
                         # dead end ?
                         while(not(idx//3 in row_list and idx%3 in col_list[j])):
                             idx = sudo4.func(self,pos[3*i+j])
                     
-
                     print("block: %d, index: %d\n" % (3*i+j+1,idx))
                     board[i][j][idx] = num
                     pos[3*i+j].pop(pos[3*i+j].index(idx))
@@ -251,9 +250,6 @@ class sudo4:
 
 from random import randint as R
 if __name__ == "__main__":
-    """ 
-    for _ in range(1):
-        g3 = sudo3()
-    g3.display()"""
+    
     g4 = sudo4()
     g4.display()
