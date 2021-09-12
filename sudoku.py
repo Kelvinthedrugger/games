@@ -135,7 +135,7 @@ class sudo2:
     # [1,2,3].pop([1,2,3].index(a))
 """
 # method 3
-# succeed but can be fix
+# succeed but can be fixed
 class sudo3:
 
     def __init__(self):
@@ -190,6 +190,10 @@ class sudo3:
 
 # method 3.1
 # slightly better than method 3
+"""
+problem: random pick might result to dead end
+potential sol'n: implement a fixer that begins to act @ block 1
+"""
 class sudo4:
 
     def __init__(self):
@@ -197,7 +201,7 @@ class sudo4:
         board = [board[i:i+3] for i in range(0,9,3)]
         pos = [list(range(9)) for _ in range(9)]
         
-        for num in range(1,8):
+        for num in range(1,5):
             print("num %d"%num)
             col_list = [[0,1,2] for _ in range(3)]
             for i in range(3):

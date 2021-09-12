@@ -1,5 +1,5 @@
 # implement game 2048 without pygame library
-# stable version @ ~/rand-things/pything/game2048.py
+# stable version @ ~/rand-things/pythings/game2048.py
 
 import random
 # use queue to move() more efficiently

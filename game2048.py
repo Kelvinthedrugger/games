@@ -16,9 +16,9 @@ class Game:
         self.board = [[0 for _ in range(4)] for _ in range(4)]
         # # below test on of the edge cases
         # # checker() failed
-        self.board = [[i+1+j for i in range(4)] for j in range(0, 16, 4)]
-        self.board[-1][-1] = 0
-        self.board[-2][-1] = 2
+        #self.board = [[i+1+j for i in range(4)] for j in range(0, 16, 4)]
+        #self.board[-1][-1] = 0
+        #self.board[-2][-1] = 2
 
     def produce(self):
         self.row = random.randint(0, 3)
