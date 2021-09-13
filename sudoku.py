@@ -259,7 +259,7 @@ class sudo5:
         pos = [list(range(9)) for _ in range(9)]
         #for num in range(1,6):
         num = 0
-        while num < 10:
+        while num < 4:
             num += 1
             start = time()
             print("\n***num %d***\n"%num)
@@ -280,31 +280,32 @@ class sudo5:
                 # somehow buggy: stuck in idx loop
                 idx = sudo5.func(self,pos[3*i+j])
                 if j > 0:
-                    print("row check")
+#                    print("row check")
                     while(not(idx//3 in row_list)):
                         idx = sudo5.func(self,pos[3*i+j])
                         if time() - start > 5:
                             print("\n reset required! due to row\n")
                             for coor in clt:
-                                i,j = coor%3, coor//3
+                                i,j = clt.index(coor)//3, clt.index(coor)%3
                                 board[i][j][coor] = 0 # restore the value
                                 pos[3*i+j].append(coor)
                             return 1 # restart the round
 
                 if i > 0:
-                    print("col check")
+#                    print("col check")
                     # dead end ?
                     while(not(idx//3 in row_list and idx%3 in col_list[j])):
                         idx = sudo5.func(self,pos[3*i+j])
                         if time() - start > 5:
                             print("\n reset required! due to col\n")
                             for coor in clt:
-                                i,j = coor%3, coor//3
+                                i,j = clt.index(coor)//3, clt.index(coor)%3
                                 board[i][j][coor] = 0 # restore the value
                                 pos[3*i+j].append(coor)
                             return 1 # restart the round
                  
-                print("block: %d, index: %d\n" % (3*i+j+1,idx))
+#                print("block: %d, index: %d\n" % (3*i+j+1,idx))
+                print("block %d\n"%(3*i+j+1))
                 board[i][j][idx] = num
                 # collect the positions each round
                 clt.append(pos[3*i+j].pop(pos[3*i+j].index(idx)))
