@@ -6,32 +6,47 @@ class well:
         self.eval = [[],[]]
 
     def play(self):
-        loc1 = int(input("player 1: "))
+        loc1 = int(input("player 1: ")) - 1
+
         if loc1 < 0 or loc1 > 8:
-            print("input should be within 0 to 9, try again\n")
-            play(self)
+            print("input should be within 1 to 9, try again\n")
+            well.play(self)
+
         self.board[loc1] = 'O'
         self.eval[0].append(loc1)
 
+        well.game_over(self)
         well.display(self)
 
-        loc2 = int(input("player 2: "))
+        loc2 = int(input("player 2: ")) - 1
+
         if loc2 < 0 or loc2 > 8:
-            print("input should be within 0 to 9, try again\n")
-            play(self)
+            print("input should be within 1 to 9, try again\n")
+            well.play(self)
+
         self.board[loc2] = 'X'
         self.eval[1].append(loc2)
 
+        well.game_over(self)
         well.display(self)
 
     def game_over(self):
         # not done
-        self.eval[0].sort()
-        self.eval[1].sort()
-        sum1 = sum(self.eval[0])
-        evalu1 = [(sum1 - ele) for ele in self.eval[0]]
-        sum2 = sum(self.eval[1])
-        evalu2 = [(sum2 - ele) for ele in self.eval[1]]
+        win_list = [[0,1,2],[3,4,5],[6,7,8],[0,4,8],[2,4,6]]
+
+        for ev in self.eval:
+            ev.sort()
+            for i in range(len(ev)-3+1):
+                tmp = ev[i:i+3]
+                if tmp in win_list:
+                    print("game over, winner is player %d" % (self.eval.index(ev)))
+                    exit(0)
+
+    def dummy(self,loc=10):
+        # to prevent override the filled position
+        if loc in (self.eval[0] or self.eval[1]):
+            print("do not override, pls try again")
+        pass
 
     def display(self):
         for i in range(0,9,3):
@@ -42,3 +57,4 @@ if __name__ == "__main__":
     game = well()
     while(1):
         game.play()
+
