@@ -15,8 +15,8 @@ class well:
         self.board[loc1] = 'O'
         self.eval[0].append(loc1)
 
-        well.game_over(self)
         well.display(self)
+        well.game_over(self)
 
         loc2 = int(input("player 2: ")) - 1
 
@@ -27,19 +27,18 @@ class well:
         self.board[loc2] = 'X'
         self.eval[1].append(loc2)
 
-        well.game_over(self)
         well.display(self)
+        well.game_over(self)
 
     def game_over(self):
-        # not done
-        win_list = [[0,1,2],[3,4,5],[6,7,8],[0,4,8],[2,4,6]]
+        win_list = [[0,1,2],[3,4,5],[6,7,8],[0,4,8],[2,4,6],[0,3,6],[1,4,7],[2,5,8]]
 
         for ev in self.eval:
             ev.sort()
             for i in range(len(ev)-3+1):
                 tmp = ev[i:i+3]
                 if tmp in win_list:
-                    print("game over, winner is player %d" % (self.eval.index(ev)))
+                    print("game over, winner is player %d" % (self.eval.index(ev)+1))
                     exit(0)
 
     def dummy(self,loc=10):

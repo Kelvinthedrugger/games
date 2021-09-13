@@ -31,21 +31,21 @@ class well:
         well.display(self)
 
     def game_over(self):
-        # not done
-        win_list = [[0,1,2],[3,4,5],[6,7,8],[0,4,8],[2,4,6]]
+        win_list = [[0,1,2],[3,4,5],[6,7,8],[0,4,8],[2,4,6],[0,3,6],[1,4,7],[2,5,8]]
 
         for ev in self.eval:
             ev.sort()
             for i in range(len(ev)-3+1):
                 tmp = ev[i:i+3]
                 if tmp in win_list:
-                    print("game over, winner is player %d" % (self.eval.index(ev)))
+                    print("game over, winner is player %d" % (self.eval.index(ev)+1))
                     exit(0)
 
-    def dummy(self):
+    def dummy(self,loc=10):
         # to prevent override the filled position
+        if loc in (self.eval[0] or self.eval[1]):
+            print("do not override, pls try again")
         pass
-
 
     def display(self):
         for i in range(0,9,3):
