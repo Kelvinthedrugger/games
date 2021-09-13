@@ -11,3 +11,5 @@ Game list
 
   sudoku: 80%
 
+  well: 95%
+

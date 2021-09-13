@@ -3,10 +3,11 @@ These approachable games are written when i don't feel like digging into semicon
 We don't use other libraries here besides build-in
 
 
-# game list
+Game list
 
- 2048: 90%
+  2048: 90%
 
- mining: 80%
+  mining: 80%
 
- sudoku: 80%
+  sudoku: 80%
+
