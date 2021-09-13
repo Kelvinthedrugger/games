@@ -251,7 +251,7 @@ class sudo4:
         # 3,3,9 
         print(" board shape: %d, %d, %d" % (len(self.board),len(self.board[0]),len(self.board[0][0])))
 
-# method 3.1 with collector implementation
+# method 3.1 + collector implementation
 class sudo5:
     def __init__(self):
         board = [[0]*9 for _ in range(9)]
@@ -265,7 +265,6 @@ class sudo5:
             print("\n***num %d***\n"%num)
             idc = sudo5.fill(self,num,pos,board,start)
             if idc:
-                # loop counter should be stopped but it didn't
                 num -= 1
                 sudo5.debug_display(self,board)
 
@@ -277,10 +276,8 @@ class sudo5:
         for i in range(3):
             row_list = [0,1,2] 
             for j in range(3):
-                # somehow buggy: stuck in idx loop
                 idx = sudo5.func(self,pos[3*i+j])
                 if j > 0:
-#                    print("row check")
                     while(not(idx//3 in row_list)):
                         idx = sudo5.func(self,pos[3*i+j])
                         if time() - start > 5:
@@ -292,8 +289,6 @@ class sudo5:
                             return 1 # restart the round
 
                 if i > 0:
-#                    print("col check")
-                    # dead end ?
                     while(not(idx//3 in row_list and idx%3 in col_list[j])):
                         idx = sudo5.func(self,pos[3*i+j])
                         if time() - start > 5:
@@ -304,7 +299,6 @@ class sudo5:
                                 pos[3*i+j].append(coor)
                             return 1 # restart the round
                  
-#                print("block: %d, index: %d\n" % (3*i+j+1,idx))
                 print("block %d\n"%(3*i+j+1))
                 board[i][j][idx] = num
                 # collect the positions each round
@@ -340,7 +334,6 @@ class sudo5:
 from random import randint as R
 from time import time # use timer as debugger
 if __name__ == "__main__":
-    
     #g4 = sudo4()
     #g4.display()
     g5 = sudo5()

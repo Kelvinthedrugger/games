@@ -305,7 +305,7 @@ class sudo5:
                             return 1 # restart the round
                  
 #                print("block: %d, index: %d\n" % (3*i+j+1,idx))
-                print("block %d"%(3*i+j+1))
+                print("block %d\n"%(3*i+j+1))
                 board[i][j][idx] = num
                 # collect the positions each round
                 clt.append(pos[3*i+j].pop(pos[3*i+j].index(idx)))
