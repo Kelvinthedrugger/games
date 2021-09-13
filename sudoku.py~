@@ -222,7 +222,8 @@ class sudo4:
                             idx = sudo4.func(self,pos[3*i+j])
                             if time() - start > 5:
                                 print("reset required")
-                                break
+                                self.board = board
+                                return 
                     
                     print("block: %d, index: %d\n" % (3*i+j+1,idx))
                     board[i][j][idx] = num
@@ -250,10 +251,96 @@ class sudo4:
         # 3,3,9 
         print(" board shape: %d, %d, %d" % (len(self.board),len(self.board[0]),len(self.board[0][0])))
 
+# method 3.1 with collector implementation
+class sudo5:
+    def __init__(self):
+        board = [[0]*9 for _ in range(9)]
+        board = [board[i:i+3] for i in range(0,9,3)]
+        pos = [list(range(9)) for _ in range(9)]
+        #for num in range(1,6):
+        num = 0
+        while num < 10:
+            num += 1
+            start = time()
+            print("\n***num %d***\n"%num)
+            idc = sudo5.fill(self,num,pos,board,start)
+            if idc:
+                # loop counter should be stopped but it didn't
+                num -= 1
+                sudo5.debug_display(self)
+
+        self.board = board
+
+    def fill(self,num,pos,board,start):
+        clt = [] # num collector
+        col_list = [[0,1,2] for _ in range(3)]
+        for i in range(3):
+            row_list = [0,1,2] 
+            for j in range(3):
+                # somehow buggy: stuck in idx loop
+                idx = sudo5.func(self,pos[3*i+j])
+                if j > 0:
+                    print("row check")
+                    while(not(idx//3 in row_list)):
+                        idx = sudo5.func(self,pos[3*i+j])
+                        if time() - start > 5:
+                            print("\n reset required! due to row\n")
+                            for coor in clt:
+                                i,j = coor%3, coor//3
+                                board[i][j][coor] = 0 # restore the value
+                                pos[3*i+j].append(coor)
+                            return 1 # restart the round
+
+                if i > 0:
+                    print("col check")
+                    # dead end ?
+                    while(not(idx//3 in row_list and idx%3 in col_list[j])):
+                        idx = sudo5.func(self,pos[3*i+j])
+                        if time() - start > 5:
+                            print("\n reset required! due to col\n")
+                            for coor in clt:
+                                i,j = coor%3, coor//3
+                                board[i][j][coor] = 0 # restore the value
+                                pos[3*i+j].append(coor)
+                            return 1 # restart the round
+                 
+                print("block: %d, index: %d\n" % (3*i+j+1,idx))
+                board[i][j][idx] = num
+                # collect the positions each round
+                clt.append(pos[3*i+j].pop(pos[3*i+j].index(idx)))
+                row_list.pop(row_list.index(idx//3))
+                col_list[j].pop(col_list[j].index(idx%3))
+
+    def func(self,arr):
+        ele = arr[R(0,len(arr)-1)]
+        return ele
+
+    def debug_display(self,board):
+        print("")
+        for ele in board:
+            for row in range(0,9,3):
+                for Row in range(3):
+                    print(" ",ele[Row][row:row+3],end="")
+                print("")
+            print("")
+ 
+    def display(self):
+        print("")
+        for board in self.board:
+            for row in range(0,9,3):
+                for Row in range(3):
+                    print(" ",board[Row][row:row+3],end="")
+                print("")
+            print("")
+        # 3,3,9 
+        print(" board shape: %d, %d, %d" % (len(self.board),len(self.board[0]),len(self.board[0][0])))
+
 
 from random import randint as R
 from time import time # use timer as debugger
 if __name__ == "__main__":
     
-    g4 = sudo4()
-    g4.display()
+    #g4 = sudo4()
+    #g4.display()
+    g5 = sudo5()
+    g5.display()
