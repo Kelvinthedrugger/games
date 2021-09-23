@@ -74,10 +74,14 @@ class mining:
         """
         # use loop: self.d_board[k] = self.n_board[k]
         # normal cases
+        """
+        x = [4,5,6]
+        y = [6,5,4]
+        self.x, self.y = x.pop(), y.pop()"""
         for i in range(-1,2):
             for j in range(-1,2):
                 if (i+self.x,j+self.y) not in self.location:
-                    self.d_board[i+self.x][j+self.j] = self.n_board[i+self.x][i+self.y]
+                    self.d_board[i+self.x][j+self.y] = self.n_board[i+self.x][i+self.y]
         return
 
         # edge cases
@@ -93,20 +97,32 @@ class mining:
             elif self.y > 6 and self.y < 8:
                 pass
         pass
-
+    def play_debug(self):
+        mining.bomb(self)
+        mining.display_both(self)
+        print("bomb location: ")
+        self.x, self.y = 5,5
+        #mining.display_both(self)
+        for bombs in self.location:
+            if (self.x,self.y) == bombs:
+                print("you lose")
+                return
+ 
     def play(self):
         mining.bomb(self)
         # mining.display_both(self)
         print("bomb location: ")
         x = int(input("row:"))
         y = int(input("col:"))
+        self.x = x
+        self.y = y
+        #mining.display_both(self)
         for bombs in self.location:
             if (x,y) == bombs:
                 print("you lose")
-                return
+        #        return
         # for display the number
-        self.x = x
-        self.y = y
+
 
     def display(self):
         """display the board for players"""
@@ -129,10 +145,10 @@ if __name__ == "__main__":
     random.seed(1337)
     game = mining()
     game.bomb()
-    game.display()
     game.display_number()
-    for _ in range(2):
-        game.play()
-        game.display_both()
+    for _ in range(10):
+#        game.play()
+        game.play_debug()
         game.display()
+#        game.display_number()
 
