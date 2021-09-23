@@ -73,6 +73,14 @@ class mining:
         do self.level == 1 first
         """
         # use loop: self.d_board[k] = self.n_board[k]
+        # normal cases
+        for i in range(-1,2):
+            for j in range(-1,2):
+                if (i+self.x,j+self.y) not in self.location:
+                    self.d_board[i+self.x][j+self.y] = self.n_board[i+self.x][i+self.y]
+        return
+
+        # edge cases
         # 4 edge cases
         if self.x < 2:
             if self.y < 3:
@@ -89,17 +97,16 @@ class mining:
     def play(self):
         mining.bomb(self)
         # mining.display_both(self)
-        while(not self.game_state):
-            print("bomb location: ")
-            x = int(input("row:"))
-            y = int(input("col:"))
-            for bombs in self.location:
-                if (x,y) == bombs:
-                    print("you lose")
-                    return
-            # for display the number
-            self.x = x
-            self.y = y
+        print("bomb location: ")
+        x = int(input("row:"))
+        y = int(input("col:"))
+        for bombs in self.location:
+            if (x,y) == bombs:
+                print("you lose")
+                return
+        # for display the number
+        self.x = x
+        self.y = y
 
     def display(self):
         """display the board for players"""
@@ -124,4 +131,8 @@ if __name__ == "__main__":
     game.bomb()
     game.display()
     game.display_number()
+    for _ in range(2):
+        game.play()
+        game.display_both()
+        game.display()
 
