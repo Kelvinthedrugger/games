@@ -75,9 +75,8 @@ class mining:
         for bombs in self.location:
             if (x,y) == bombs:
                 print("you lose")
-        #        return
-        # for display the number
-
+                exit(0)
+    
 
     def display(self):
         """display the board for players"""
