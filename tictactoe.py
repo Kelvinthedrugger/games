@@ -8,11 +8,21 @@ class Grid:
         print(ele, end=" ")
       print("")
 
+  def lines(alp):
+    # check if there's any line of "alp" in the board
+    return 0
 
   def check_result(self):
     # instead of loop thru the board every time
     #  just record the input history would be easier and faster ?
-    pass
+    if lines("x"):
+        print("player 2 wins")
+        return 1
+    elif lines("o"):
+        print("player 2 wins")
+        return 0
+    else:
+        return -1
 
 
 
