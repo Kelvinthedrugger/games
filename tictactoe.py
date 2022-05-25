@@ -1,6 +1,7 @@
 class Grid:
   def __init__(self):
     self.board = [["_","_","_"], ["_","_","_"], ["_","_","_"]]
+    self.steps = 0 # number of space that is not empty, aka, has been placed w/ o/x
 
   def print(self):
     for row in self.board:
@@ -10,6 +11,9 @@ class Grid:
 
   def lines(alp):
     # check if there's any line of "alp" in the board
+    # if < minimun steps: it's definitely not ended yet: return 0
+    if self.steps < 5: return 0
+
     return 0
 
   def check_result(self):
