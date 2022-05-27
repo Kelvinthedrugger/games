@@ -2,6 +2,8 @@ class Grid:
   def __init__(self):
     self.board = [["_","_","_"], ["_","_","_"], ["_","_","_"]]
     self.steps = 0 # number of space that is not empty, aka, has been placed w/ o/x
+    # record played step
+    self.x, self.y = [], []
 
   def print(self):
     for row in self.board:
