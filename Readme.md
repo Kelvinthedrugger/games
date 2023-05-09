@@ -7,9 +7,9 @@ Game list
 
   2048: 90%
 
-  mining: 80%
+  mining(mineswepper): 80%
 
   sudoku: 80%
 
-  well: 95%
+  well: 100%
 
